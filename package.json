@@ -1,0 +1,24 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src\\app.js",
+  "scripts": {
+    "start": "nodemon src\\app.js",
+    "xem": "sass --watch src/resource/scss:src/public/css/",
+    "test": "echo \\\"Error: no test spectified\\\" && exit 1"
+  },
+  "author": "vinhkhang",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1",
+    "mongoose": "^8.15.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "sass": "^1.77.8"
+  }
+}

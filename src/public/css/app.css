@@ -1,0 +1,80 @@
+@charset "UTF-8";
+h1 {
+  color: brown;
+}
+
+a {
+  direction: none;
+  text-decoration: none;
+  color: rgb(230, 123, 123);
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  border-radius: 50px;
+  padding-left: 40px;
+  width: 250px;
+  border: none;
+}
+
+.search-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0 50px 50px 0;
+  background: transparent;
+  border: none;
+}
+
+.search-button i {
+  color: black; /* Thay đổi màu icon thành đen */
+}
+
+.form-control:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.equal-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 0; /* Loại bỏ bất kỳ khoảng cách dưới nào */
+}
+
+.equal-card .card-body {
+  flex-grow: 1;
+  padding-bottom: 0; /* Đảm bảo không có padding thừa */
+}
+
+.card img {
+  object-fit: cover;
+  height: 100%; /* Đảm bảo hình ảnh chiếm đủ chiều cao */
+}
+
+.row {
+  margin-bottom: 0; /* Đảm bảo dòng không có khoảng trống dưới */
+}
+
+.card {
+  height: 100%; /* Set the height of each card to 100% of its container */
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; /* Loại bỏ khoảng trắng dưới hình ảnh */
+}
+
+.card-body {
+  flex-grow: 1; /* Allow the card body to grow to fill the available space */
+}
+
+/*# sourceMappingURL=app.css.map */

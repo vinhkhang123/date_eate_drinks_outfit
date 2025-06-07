@@ -1,0 +1,31 @@
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Khu vực</th>
+      <th>Mục</th>
+      <th>Thời gian</th>
+      <th>Quán</th>
+      <th>Địa chỉ</th>
+      <th>Miêu tả</th>
+      <th>Giá tiền</th>
+      <th>Bổ sung</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each googlesheetdata}}
+    <tr>
+      <td>{{this.khuvuc}}</td>
+      <td>{{this.muc}}</td>
+      <td>{{this.thoigian}}</td>
+      <td>{{this.quan}}</td>
+      <td>{{this.diachi}}</td>
+      <td>{{this.mieuta}}</td>
+      <td>{{this.giatien}}</td>
+      <td>{{this.bosung}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+

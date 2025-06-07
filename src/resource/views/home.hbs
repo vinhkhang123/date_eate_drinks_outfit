@@ -1,0 +1,21 @@
+<div class="row g-0">
+  {{#each list}} 
+  <div class="col-6 mb-0">
+    <div class="card equal-card">
+      <div class="row g-0">
+        <div class="col-md-6">
+          <img src="{{this.img}}" class="img-fluid rounded-start w-100 h-100" alt="...">
+        </div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">{{this.ten}}</h5>
+            <p class="card-text">Địa chỉ: {{this.diaChi}}</p>
+            <p class="card-text"><small class="text-body-secondary">Giá: {{this.gia}}</small></p>
+            <p class="card-text"><small class="text-body-secondary">Giờ mở cửa: {{this.gioMoCua}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}} 
+</div>
