@@ -1,6 +1,8 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const siteController = require('../app/controllers/sheetController');
 
-const newsControllers = require('../app/controllers/newController')
-router.get('/',newsControllers.index)
-module.exports = router 
+router.get('/', siteController.index);
+
+module.exports = router;
+
