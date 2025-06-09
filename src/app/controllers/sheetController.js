@@ -1,4 +1,4 @@
-const SheetData = require('../models/importGoogleSheet');
+const SheetData = require('../models/datasheet.js');
 
 module.exports = {
   index: async (req, res) => {

@@ -1,21 +1,4 @@
-const mongoose = require('mongoose');
-
-const sheetSchema = new mongoose.Schema({
-  khuvuc: String,
-  muc: String,
-  thoigian: String,
-  quan: String,
-  diachi: String,
-  mieuta: String,
-  giatien: String,
-  bosung: String,
-});
-
-const SheetData = mongoose.model('googleSheetData', sheetSchema);
-
-module.exports = SheetData;
-// lưu dữ liệu
-/*import mongoose from "mongoose";
+import mongoose from "mongoose";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 dotenv.config();
@@ -52,20 +35,25 @@ export async function importData() {
     const text = await response.text();
 
     const lines = text.split("\n");
-    // Bỏ qua header (dòng 0)
+    let lastKnownKhuvuc = "";
+
     const data = lines.slice(1).map((line) => {
-      const values = line.split(",");
+      const values = line.split(",").map(v => v.trim());
+
+      const stt = values[0];
+      const khuvuc = values[1];
+      if (khuvuc) lastKnownKhuvuc = khuvuc;
 
       return {
-        stt:values[0]?.trim(),
-        khuvuc: values[1]?.trim(),
-        muc: values[2]?.trim(),
-        thoigian: values[3]?.trim(),
-        quan: values[4]?.trim(),
-        diachi: values[5]?.trim(),
-        mieuta: values[6]?.trim(),
-        giatien: values[7]?.trim(),
-        bosung: values[8]?.trim(),
+        stt,
+        khuvuc: lastKnownKhuvuc,
+        muc: values[2] || "",
+        thoigian: values[3] || "",
+        quan: values[4] || "",
+        diachi: values[5] || "",
+        mieuta: values[6] || "",
+        giatien: values[7] || "",
+        bosung: values[8] || "",
       };
     }).filter(item => item.quan);
 
@@ -83,4 +71,3 @@ export async function importData() {
 // Nếu chạy trực tiếp file này, thì chạy importData luôn
 
   await importData();
-*/
