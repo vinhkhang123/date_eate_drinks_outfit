@@ -19,13 +19,20 @@
       </li>
     </ul>
     <!-- Thanh tìm kiếm -->
-    <form class="form-inline my-2 my-lg-0 ml-auto">
+   <form action="/news" method="GET" class="form-inline my-2 my-lg-0 ml-auto">
       <div class="search-container">
-        <input class="form-control search-input" type="search" placeholder="Tìm Kiếm" aria-label="Search">
+        <input
+          class="form-control search-input"
+          type="search"
+          name="khuvuc" 
+          placeholder="Tìm"
+          aria-label="Search"
+        />
         <button class="btn btn-outline-light search-button" type="submit">
-          <i class="fas fa-search"></i> <!-- Font Awesome icon -->
+          <i class="fas fa-search"></i>
         </button>
       </div>
     </form>
+
   </div>
 </nav>
