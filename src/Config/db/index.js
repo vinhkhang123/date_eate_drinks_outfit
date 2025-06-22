@@ -1,27 +1,25 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 
-/*async function connect() {
-    try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/music_app_dev', { 
-          serverSelectionTimeoutMS: 30000,
-        });
-        console.log('Kết nối thành công');
-      } catch (error) {
-        console.log('Kết nối thất bại:', error);
-        console.error('Chi tiết:', error.message);
-      }
-}
-module.exports = {connect}*/
-async function KetNoi() {
+
+async function connectDB() {
+  const uri = process.env.MONGO_URI;
+
+  if (!uri) {
+    console.error("❌ Không tìm thấy MONGO_URI trong file .env");
+    console.log("📦 DEBUG MONGO_URI =", process.env.MONGO_URI); 
+    return;
+  }
+
   try {
-      await mongoose.connect('mongodb://127.0.0.1:27017/date_eat_drinks_outfit', { 
-        serverSelectionTimeoutMS: 30000,
-      });
-      console.log('Kết nối thành công nha');
-    } catch (error) {
-      console.log('Kết nối thất bại:', error);
-      console.error('Chi tiết:', error.message);
-    }
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ Kết nối MongoDB thành công");
+  } catch (err) {
+    console.error("❌ Kết nối MongoDB thất bại:", err.message);
+  }
 }
-module.exports ={KetNoi}
-//module.exports = {connect}
+
+module.exports = { connectDB };

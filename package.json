@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
-"scripts": {
-  "start": "node src/app.js",
-  "dev": "nodemon src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "xem": "sass --watch src/resource/scss:src/public/css/",
     "test": "echo \\\"Error: no test spectified\\\" && exit 1"
   },

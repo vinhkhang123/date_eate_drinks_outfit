@@ -3,14 +3,17 @@ const path = require('path');
 const { engine } = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const Handlebars = require('handlebars');
-const db = require('./Config/db');
+const dotenv = require('dotenv'); // Load .env
+dotenv.config();
+
+const db = require('./Config/db'); // 🔁 Đã sửa tên file từ ./Config/db
 const route = require('./routes');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Kết nối DB
-db.KetNoi();
+// ✅ Kết nối MongoDB Atlas (hoặc local nếu bạn cấu hình fallback)
+db.connectDB();
 
 // Static + Middleware
 app.use(express.static(path.join(__dirname, 'public')));
