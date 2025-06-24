@@ -74,4 +74,8 @@ a {
   .card-body {
     flex-grow: 1; /* Allow the card body to grow to fill the available space */
   }
-  
+  /* Trong public/css/ hoặc thẻ style nội tuyến */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

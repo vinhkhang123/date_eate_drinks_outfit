@@ -1,32 +1,45 @@
-<div class="table-responsive">
-<table class="table table-bordered table-striped">
-  <thead class="table-dark">
-    <tr>
-      <th>Khu vực</th>
-      <th>Mục</th>
-      <th>Thời gian</th>
-      <th>Quán</th>
-      <th>Địa chỉ</th>
-      <th>Miêu tả</th>
-      <th>Giá tiền</th>
-      <th>Bổ sung</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    {{#each data}}
-    <tr>
-      <td>{{this.khuvuc}}</td>
-      <td>{{this.muc}}</td>
-      <td>{{this.thoigian}}</td>
-      <td>{{this.quan}}</td>
-      <td>{{this.diachi}}</td>
-      <td>{{this.mieuta}}</td>
-      <td>{{this.giatien}}</td>
-      <td>{{this.bosung}}</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+<div class="table-responsive d-none d-md-block">
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Khu vực</th>
+        <th>Mục</th>
+        <th>Thời gian</th>
+        <th>Quán</th>
+        <th>Địa chỉ</th>
+        <th>Miêu tả</th>
+        <th>Giá tiền</th>
+        <th>Bổ sung</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data}}
+      <tr>
+        <td>{{this.khuvuc}}</td>
+        <td>{{this.muc}}</td>
+        <td>{{this.thoigian}}</td>
+        <td>{{this.quan}}</td>
+        <td>{{this.diachi}}</td>
+        <td>{{this.mieuta}}</td>
+        <td>{{this.giatien}}</td>
+        <td>{{this.bosung}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="d-block d-md-none">
+  {{#each data}}
+    <div class="card mb-3 border rounded p-2 shadow-sm">
+      <div><strong>Khu vực:</strong> {{this.khuvuc}}</div>
+      <div><strong>Mục:</strong> {{this.muc}}</div>
+      <div><strong>Thời gian:</strong> {{this.thoigian}}</div>
+      <div><strong>Quán:</strong> {{this.quan}}</div>
+      <div><strong>Địa chỉ:</strong> {{this.diachi}}</div>
+      <div><strong>Miêu tả:</strong> {{this.mieuta}}</div>
+      <div><strong>Giá tiền:</strong> {{this.giatien}}</div>
+      <div><strong>Bổ sung:</strong> {{this.bosung}}</div>
+    </div>
+  {{/each}}
 </div>
 
