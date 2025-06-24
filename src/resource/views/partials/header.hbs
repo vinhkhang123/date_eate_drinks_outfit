@@ -18,33 +18,34 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="http://localhost:3000">Trang Chủ <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Trang Chủ <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/news">Yêu thích</a>
       </li>
       <li class="nav-item"> 
-        <a class="nav-link" href="/news">Đồ Uống</a>
+        <a class="nav-link" href="/food">Đồ Uống</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/news">Tiệm Đồ</a>
       </li>
     </ul>
     <!-- Thanh tìm kiếm -->
-   <form action="/news" method="GET" class="form-inline my-2 my-lg-0 ml-auto">
-      <div class="search-container">
-        <input
-          class="form-control search-input"
-          type="search"
-          name="khuvuc" 
-          placeholder="Tìm" 
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-light search-button" type="submit">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </form>
+   <form action="/food" method="GET" class="form-inline my-2 my-lg-0 ml-auto">
+  <div class="search-container">
+    <input
+      class="form-control search-input"
+      type="search"
+      name="khuvuc" 
+      placeholder="Tìm" 
+      aria-label="Search"
+      value="{{searchValue}}"  <!-- ✅ giữ lại giá trị đã tìm -->
+    />
+    <button class="btn btn-outline-light search-button" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</form>
 
   </div>
 </nav>

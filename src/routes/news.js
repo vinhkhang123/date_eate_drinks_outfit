@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const siteController = require('../app/controllers/sheetController');
+const newController = require('../app/controllers/newController');
 
-router.get('/', siteController.index);
+router.get('/news', newController.index);
 
 module.exports = router;
 
