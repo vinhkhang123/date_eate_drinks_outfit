@@ -1,21 +1,20 @@
-import mongoose from "mongoose";
-import fetch from "node-fetch";
-import dotenv from "dotenv";
-dotenv.config();
+const mongoose = require("mongoose");
+const fetch = require("node-fetch");
+const { parse } = require("csv-parse/sync");
+require("dotenv").config();
 
-// URL Google Sheet export dạng CSV
-const CSV_URL = "https://docs.google.com/spreadsheets/d/1hVo-4y5NNgUULq940WwDgr2gjCgwrJZj0mmMo8FJl-A/export?format=csv&gid=1050285890";
+// Lấy từ biến môi trường
+const MONGO_URI = process.env.MONGO_URI;
+const CSV_URL = process.env.CSV_URL;
 
-// Kết nối MongoDB
-await mongoose.connect("mongodb://127.0.0.1:27017/date_eat_drinks_outfit", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-console.log("✅ Đã kết nối MongoDB");
+if (!MONGO_URI || !CSV_URL) {
+  console.error("❌ Thiếu MONGO_URI hoặc CSV_URL trong .env");
+  process.exit(1);
+}
 
-// Schema cập nhật
+// Định nghĩa schema
 const sheetSchema = new mongoose.Schema({
-  stt:String,
+  stt: String,
   khuvuc: String,
   muc: String,
   thoigian: String,
@@ -28,39 +27,61 @@ const sheetSchema = new mongoose.Schema({
 
 const SheetData = mongoose.model("googleSheetData", sheetSchema);
 
-// Hàm import
-export async function importData() {
+// Hàm import dữ liệu
+async function importData() {
   try {
+    await mongoose.connect(MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ Đã kết nối MongoDB");
+
     const response = await fetch(CSV_URL);
-    const text = await response.text();
+    const csvText = await response.text();
 
-    const lines = text.split("\n");
+    // Tách từng dòng
+    const lines = csvText.split('\n');
+
+    // Tìm dòng đầu tiên chứa tiêu đề thật
+    let headerIndex = lines.findIndex(line => line.includes('STT') && line.includes('KHU VỰC'));
+    if (headerIndex === -1) {
+      throw new Error('❌ Không tìm thấy dòng tiêu đề hợp lệ trong CSV');
+    }
+
+    // Cắt phần CSV từ dòng tiêu đề trở đi
+    const validCsv = lines.slice(headerIndex).join('\n');
+
+    // Parse từ đoạn đó
+    const records = parse(validCsv, {
+      columns: true,
+      skip_empty_lines: true,
+      trim: true,
+    });
+
     let lastKnownKhuvuc = "";
-
-    const data = lines.slice(1).map((line) => {
-      const values = line.split(",").map(v => v.trim());
-
-      const stt = values[0];
-      const khuvuc = values[1];
+    
+    const cleaned = records.map((row) => {
+      const stt = row["STT"] || "";
+      const khuvuc = row["KHU VỰC"]?.trim();
       if (khuvuc) lastKnownKhuvuc = khuvuc;
 
       return {
         stt,
         khuvuc: lastKnownKhuvuc,
-        muc: values[2] || "",
-        thoigian: values[3] || "",
-        quan: values[4] || "",
-        diachi: values[5] || "",
-        mieuta: values[6] || "",
-        giatien: values[7] || "",
-        bosung: values[8] || "",
+        muc: row["MỤC"] || "",
+        thoigian: row["THỜI GIAN"] || "",
+        quan: row["QUÁN"] || "",
+        diachi: row["ĐỊA CHỈ"] || "",
+        mieuta: row["MIÊU TẢ"] || "",
+        giatien: row["GIÁ TIỀN"] || "",
+        bosung: row["BỔ SUNG"] || "",
       };
-    }).filter(item => item.quan);
+    }).filter((item) => item.quan);
 
     await SheetData.deleteMany();
-    await SheetData.insertMany(data);
+    await SheetData.insertMany(cleaned);
 
-    console.log("✅ Import thành công");
+    console.log("✅ Import thành công:", cleaned.length, "dòng");
   } catch (err) {
     console.error("❌ Lỗi import:", err);
   } finally {
@@ -68,6 +89,9 @@ export async function importData() {
   }
 }
 
-// Nếu chạy trực tiếp file này, thì chạy importData luôn
+// Nếu chạy trực tiếp file này thì thực hiện import luôn
+if (require.main === module) {
+  importData();
+}
 
-  await importData();
+module.exports = importData;

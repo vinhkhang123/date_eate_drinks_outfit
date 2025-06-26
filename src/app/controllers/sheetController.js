@@ -13,8 +13,8 @@ module.exports = {
 
       }
       // kiểm tra tất cả khu vực
-     // const allData = await SheetData.find();
-      //console.log("📊 Tất cả khu vực:", allData.map(d => d.khuvuc));
+     const allData = await SheetData.find();
+    //  console.log("📊 Tất cả khu vực:", allData.map(d => d.khuvuc));
       const data = await SheetData.find(query).lean();
       // 🟢 Đặt ở đây
 

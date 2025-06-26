@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const sheetSchema = new mongoose.Schema({
+  stt: String,
   khuvuc: String,
   muc: String,
   thoigian: String,
@@ -10,6 +11,7 @@ const sheetSchema = new mongoose.Schema({
   giatien: String,
   bosung: String,
 });
+
 
 const SheetData = mongoose.model('googleSheetData', sheetSchema);
 
