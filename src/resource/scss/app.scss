@@ -79,3 +79,30 @@ a {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.fullscreen-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* 🖥️ Mặc định cho desktop */
+.fullscreen-image {
+  background-image: url("https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/481768650_1758637748034689_5373605659128996150_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=RzXc7BOHF2UQ7kNvwGXML1D&_nc_oc=AdnVAqUgFY24UpA3KWOnm5cfk_fhT5YGVKL5KJj2FgLxywQe5J0YmlYZC-g9Q-x67iBN28VU-GPBPIV_0Eoh3pDR&_nc_zt=23&_nc_ht=scontent.fsgn19-1.fna&_nc_gid=m0Emi5IkkEB_lQ9Tm5L2_g&oh=00_AfOfQnks9rXkwAA_d4JSxKSLff7_NJ36R_mirpU5kDPjig&oe=68632E80");
+}
+
+/* 📱 Giao diện cho điện thoại */
+@media screen and (max-width: 768px) {
+  .fullscreen-image {
+    background-image: url("https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/459328906_1638429153388883_8816997875956938008_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=pvVaMWNEyPkQ7kNvwEpdlCA&_nc_oc=AdlMrjmQTmP6GuG4S5e-qb3ZXLDO6zjyfbeGVz4SogJYaeH_Ipox9E_qvOW5XKIaNsQoUTA6izdjDJkRK0-IuRBy&_nc_zt=23&_nc_ht=scontent.fsgn19-1.fna&_nc_gid=4ooNH8c-9t2kizVKBTjX2g&oh=00_AfPRX7a_30x7KuLt9F2IwdCyIdX4SY5ygOnic1bLBf4YEQ&oe=68631F7B");
+    background-position: center center;
+  }
+}
+
+
+
