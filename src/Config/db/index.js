@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 async function connectDB() {
   const uri = process.env.MONGO_URI;
-
+  console.log("🔍 URI đang dùng:", uri); // thêm dòng này
   if (!uri) {
     console.error("❌ Không tìm thấy MONGO_URI trong file .env");
     console.log("📦 DEBUG MONGO_URI =", process.env.MONGO_URI); 
